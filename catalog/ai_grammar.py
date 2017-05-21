@@ -3,11 +3,6 @@ import nltk, re, pprint, csv, sqlite3
 from nltk import word_tokenize
 from urllib import request
 
-lines = []
-with open('/Users/oszabo/Documents/Python/django/locallibrary/locallibrary/catalog/phrases.csv', 'r') as f:
-    for line in f.readlines():
-        name, cat, nr, type = line.strip().split(';')
-        lines.append((name, cat, nr, type))
 
 
 
@@ -28,38 +23,6 @@ def ai_grammar(input):
 
 
 # PHRASES
-    global lines
-
-    phr1 = []
-    phr2 = []
-    phr3 = []
-    phr4 = []
-    for i,j,k,l in lines:
-        phr1.append(i)
-        phr2.append(j)
-        phr3.append(k)
-        phr4.append(l)
-
-
-    for c in range(len(col1)): #végigmegyünk a szavakon
-        for i in range(len(phr1)): #megnézzük, hogy az adott szó egyezik-e a kifejezések kezdőszavával
-            if phr1[i] == col1[c]: #ha egyezik
-                text = phr2[i].split('**')
-                match = 0
-                text2 = ''
-                for j in range(int(phr3[i])): #megnézzük, hogy a kifejezés összes szava egyezik-e
-                    if text[j] == col1[c+j] or col1[c+j] in ('one\'s'):
-                        match += 1
-                        text2 += text[j]
-                        if match == int(phr3[i]): #ha igen
-                            col1[c] = text2 # kicseréljük a kezdőszót a kifejezésre
-                            col2[c] = phr4[i] # kicseréljük a szófaját
-                            for jj in range(int(phr3[i])): #töröljük a szavakat és csak a kifejezést hagyjuk meg
-                                if jj != 0:
-                                    del col1[c+1], col2[c+1]
-                                    col1.append(' ')
-                                    col2.append(' ')
-
 
 
 
